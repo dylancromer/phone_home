@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # PasteBin API Class
 # Developed by acidvegas in Python
 # https://github.com/acidvegas/pastebin

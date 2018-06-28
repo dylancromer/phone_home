@@ -1,5 +1,6 @@
 import socket
 from requests import get
+from ipgetter import myip
 
 def get_local_ip():
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -9,9 +10,12 @@ def get_local_ip():
 
     return local_ip
 
-def get_public_ip():
+def get_public_ip_simple():
     ip = get('https://api.ipify.org').text
     return ip
+
+def get_public_ip():
+    return myip()
 
 if __name__ == '__main__':
     local = get_local_ip()
