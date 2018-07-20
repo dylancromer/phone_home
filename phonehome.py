@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import lib.pastebin as pastebin
 import os
 from os.path import join, dirname
@@ -17,7 +18,7 @@ ip_loc = ip_tools.get_local_ip()
 
 data = 'public ip: ' + ip_pub + '\n' + 'local ip: ' + ip_loc
 
-result = api.paste(data, guest=False, name='whereami', private='1', expire='10M')
+result = api.paste(data, guest=False, name='whereami', private='1', expire='1H')
 if 'Bad API request' not in result:
         print('[+] - PasteBin URL: ' + result)
 else:
