@@ -1,24 +1,28 @@
+#!/usr/bin/env python3
+
 import socket
 from requests import get
-from ipgetter import myip
 
 def get_local_ip():
-    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    s.connect(("8.8.8.8", 80))
-    local_ip = s.getsockname()[0]
-    s.close()
+    """
+    No arguments, returns local IP as string.
+    """
+    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    sock.connect(("8.8.8.8", 80))
+    local_ip = sock.getsockname()[0]
+    sock.close()
 
     return local_ip
 
-def get_public_ip_simple():
-    ip = get('https://api.ipify.org').text
-    return ip
-
 def get_public_ip():
-    return myip()
+    """
+    No args, returns public IP as string.
+    """
+    public_ip = get('https://api.ipify.org').text
+    return public_ip
 
 if __name__ == '__main__':
-    local = get_local_ip()
-    print(local)
-    public = get_public_ip()
-    print(public)
+    LOCAL = get_local_ip()
+    print(LOCAL)
+    PUBLIC = get_public_ip()
+    print(PUBLIC)
