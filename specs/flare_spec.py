@@ -10,7 +10,7 @@ def test_public_ip_can_be_grabbed():
     assert ip is not None
     assert type(ip) is str
 """
-- it looks for a signal
+    - it looks for a signal
 """
 from phonehome.flaregun import Flare
 def test_checks_for_secret_dont_fail_obviously():
@@ -25,6 +25,15 @@ def test_checks_for_secret_dont_fail_obviously():
     flare = Flare(link, 10, word_that_is_never_there, '127.0.0.1', 1331)
     assert not flare.check_url()
 """
-- when it sees that signal it send me the IP
+    - when it sees that signal it send me the IP
 """
 # tests need more work here - pretty hard!
+"""
+    - tries again if it can't connect the first time, then puts itself into a panic state and retries every 5 minutes
+"""
+def test_retry_connection():
+    link = "https://twitter.com/dylanmcromer"
+    word_that_is_always_there = "Dylan"
+
+    flare = Flare(link, 10, word_that_is_always_there, '127.0.0.1', 1331)
+    assert flare._panic_cannot_send_flare(test=True)
