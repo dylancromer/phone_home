@@ -1,5 +1,5 @@
 """
-BOTTLE
+FLARE
 
 what does it do:
     - it gets the external ip address
@@ -10,17 +10,20 @@ def test_public_ip_can_be_grabbed():
     assert ip is not None
     assert type(ip) is str
 """
-- it waits for a signal
+- it looks for a signal
 """
-from phonehome.bottle import check_url
+from phonehome.flaregun import Flare
 def test_checks_for_secret_dont_fail_obviously():
     link = "https://twitter.com/dylanmcromer"
-
     word_that_is_always_there = "Dylan"
-    assert check_url(link, word_that_is_always_there)
+
+    flare = Flare(link, 10, word_that_is_always_there, '127.0.0.1', 1331)
+    assert flare.check_url()
 
     word_that_is_never_there = "I hate Gary Bernhardt"
-    assert not check_url(link, word_that_is_never_there)
+
+    flare = Flare(link, 10, word_that_is_never_there, '127.0.0.1', 1331)
+    assert not flare.check_url()
 """
 - when it sees that signal it send me the IP
 """
